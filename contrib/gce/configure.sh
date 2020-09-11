@@ -55,7 +55,7 @@ fetch_env() {
     # Convert the yaml format file into a shell-style file.
     eval $(python -c '''
 import pipes,sys,yaml
-for k,v in yaml.load(sys.stdin).iteritems():
+for k,v in yaml.load(sys.stdin).items():
   print("readonly {var}={value}".format(var = k, value = pipes.quote(str(v))))
 ''' < "${tmp_env_file}" > "${CONTAINERD_HOME}/${env_file_name}")
     rm -f "${tmp_env_file}"
